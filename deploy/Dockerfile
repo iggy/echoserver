@@ -2,6 +2,7 @@ FROM golang:1.14-buster AS builder
 RUN apt-get update \
   && apt-get upgrade -y
 RUN apt-get install -y git make upx
+RUN env
 WORKDIR /app
 COPY . .
 RUN make deps
@@ -16,8 +17,8 @@ ENV PATH=/bin
 COPY --from=builder /app/bin/echoserver_linux_amd64 /bin/echoserver
 ENTRYPOINT ["/bin/echoserver"]
 LABEL maintainer "zephinzer"
-LABEL repository_github "https://github.com/usvc/echoserver"
-LABEL repository_gitlab "https://gitlab.com/usvc/services/echoserver"
+LABEL repository_github "https://github.com/iggy/echoserver"
+# LABEL repository_gitlab "https://gitlab.com/usvc/services/echoserver"
 LABEL git_commit_id ${GIT_COMMIT_ID}
 LABEL git_tag ${GIT_TAG}
 LABEL build_timestamp ${BUILD_TIMESTAMP}
