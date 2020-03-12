@@ -57,6 +57,8 @@ jobs:
       - ~pr
       - main
     image: notiggy/dind-utils  # docker:dind
+    annotations:
+      screwdriver.cd/dockerEnabled: true
     steps:
       - env: env
       - which-docker: which docker
