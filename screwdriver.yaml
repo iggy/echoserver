@@ -51,11 +51,15 @@ jobs:
       - test: go test ./...
       # Compiles the packages and dependencies
       - build: go build -o echoserver -a ./...
+
   docker-stuff:
     requires:
       - ~pr
       - main
+    image: docker:dind
     steps:
+      - env: env
+      - which-docker: which docker
       - build_prod: make build_production
       - compress: make compress
       - image: make image
