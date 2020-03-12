@@ -56,7 +56,7 @@ jobs:
     requires:
       - ~pr
       - main
-    image: notiggy/dind-utils  # docker:dind
+    image: alpine/git  # docker:dind
     annotations:
       screwdriver.cd/dockerEnabled: true
     steps:
