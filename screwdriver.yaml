@@ -15,6 +15,9 @@ shared:
     # accessible by another environment variable that we can reference instead
     # of hard-coding it here
     GOPATH: /sd/workspace
+    HARBOR_USER: robot$concourse-ci
+  secrets:
+    - HARBOR_PASSWORD
 
 # Jobs definition block
 # All pipelines have "main" by default, and is implicitly defined.
@@ -48,3 +51,12 @@ jobs:
       - test: go test ./...
       # Compiles the packages and dependencies
       - build: go build -o echoserver -a ./...
+  docker-stuff:
+    requires:
+      - ~pr
+      - main
+    steps:
+      - build_prod: make build_production
+      - compress: make compress
+      - image: make image
+      - push: make dockerhub

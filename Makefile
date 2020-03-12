@@ -1,6 +1,6 @@
 CMD_ROOT=echoserver
-DOCKER_NAMESPACE=iggy
-DOCKER_IMAGE_NAME=echoserver
+DOCKER_NAMESPACE=harbor.ops.pluto.tv/pluto-tv
+DOCKER_IMAGE_NAME=sd-echoserver
 PROJECT_NAME=echoserver
 GIT_COMMIT=$$(git rev-parse --verify HEAD)
 GIT_TAG=$$(git describe --tag $$(git rev-list --tags --max-count=1))
@@ -63,6 +63,7 @@ save:
 load:
 	docker load --input ./build/$(PROJECT_NAME).tar.gz
 dockerhub:
+	echo $HARBOR_PASSWORD | docker login --password-stdin -u $HARBOR_USER
 	docker push $(DOCKER_NAMESPACE)/$(DOCKER_IMAGE_NAME):latest
 	git fetch
 	docker tag $(DOCKER_NAMESPACE)/$(DOCKER_IMAGE_NAME):latest \
