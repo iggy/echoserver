@@ -40,17 +40,17 @@ jobs:
     # command that is executed during the step.
     steps:
       # Go commands document - https://golang.org/cmd/go/
-
+      - env: env
       # This step downloads and installs packages and dependencies
-      - get: go get -t ./...
-      # The "vet" step runs the go tool vet on packages
-      - vet: go vet ./...
-      # This step runs gofmt on package resources
-      - gofmt: "find . -name '*.go' | xargs gofmt -s -w"
-      # The "test" step tests the packages
-      - test: go test ./...
-      # Compiles the packages and dependencies
-      - build: go build -o echoserver -a ./...
+      # - get: go get -t ./...
+      # # The "vet" step runs the go tool vet on packages
+      # - vet: go vet ./...
+      # # This step runs gofmt on package resources
+      # - gofmt: "find . -name '*.go' | xargs gofmt -s -w"
+      # # The "test" step tests the packages
+      # - test: go test ./...
+      # # Compiles the packages and dependencies
+      # - build: go build -o echoserver -a ./...
 
   docker-stuff:
     requires:
