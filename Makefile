@@ -1,5 +1,5 @@
 CMD_ROOT=echoserver
-DOCKER_NAMESPACE=usvc
+DOCKER_NAMESPACE=iggy
 DOCKER_IMAGE_NAME=echoserver
 PROJECT_NAME=echoserver
 GIT_COMMIT=$$(git rev-parse --verify HEAD)
@@ -69,8 +69,8 @@ dockerhub:
 		$(DOCKER_NAMESPACE)/$(DOCKER_IMAGE_NAME):$$(git describe --tag $$(git rev-list --tags --max-count=1))
 	docker push $(DOCKER_NAMESPACE)/$(DOCKER_IMAGE_NAME):$$(git describe --tag $$(git rev-list --tags --max-count=1))
 
-see_ci:
-	xdg-open https://gitlab.com/usvc/modules/go/semver/pipelines
+# see_ci:
+# 	xdg-open https://gitlab.com/usvc/modules/go/semver/pipelines
 
 .ssh:
 	mkdir -p ./.ssh
