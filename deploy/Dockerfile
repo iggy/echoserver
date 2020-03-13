@@ -1,20 +1,21 @@
-FROM golang:1.14-buster AS builder
-RUN apt-get update \
-  && apt-get upgrade -y
-RUN apt-get install -y git make upx
-RUN env
-WORKDIR /app
-COPY . .
-RUN make deps
-RUN make build_production
-RUN make compress
+# FROM golang:1.14-buster AS builder
+# RUN apt-get update \
+#   && apt-get upgrade -y
+# RUN apt-get install -y git make upx
+# RUN env
+# WORKDIR /app
+# COPY . .
+# RUN make deps
+# RUN make build_production
+# RUN make compress
 
 FROM gcr.io/distroless/base-debian10
 ARG GIT_COMMIT_ID="undefined"
 ARG GIT_TAG="undefined"
 ARG BUILD_TIMESTAMP="undefined"
 ENV PATH=/bin
-COPY --from=builder /app/bin/echoserver_linux_amd64 /bin/echoserver
+# COPY --from=builder /app/bin/echoserver_linux_amd64 /bin/echoserver
+COPY ./bin/echoserver_linux_amd64 /bin/echoserver
 ENTRYPOINT ["/bin/echoserver"]
 LABEL maintainer "iggy"
 LABEL repository_github "https://github.com/iggy/echoserver"
