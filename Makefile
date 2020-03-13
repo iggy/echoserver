@@ -1,5 +1,5 @@
 CMD_ROOT=echoserver
-DOCKER_REGISTRY=harbor.ops.pluto.tv
+DOCKER_REGISTRY=harbor.devops.pluto.tv
 DOCKER_NAMESPACE=$(DOCKER_REGISTRY)/pluto-tv
 DOCKER_IMAGE_NAME=sd-echoserver
 PROJECT_NAME=echoserver
