@@ -47,7 +47,7 @@ compress:
 	ls -lah ./bin/$(BIN_PATH)
 
 image:
-	export SSL_CERT_DIR=/etc/ssl/certs
+	export SSL_CERT_DIR=/go/src/github.com/uber/makisu/site/assets/cacerts.pe
 	makisu build \
 		--build-arg GIT_COMMIT_ID=$(GIT_COMMIT) \
 		--build-arg GIT_TAG=$(GIT_TAG) \
