@@ -66,6 +66,7 @@ jobs:
       - go-env: go env ; ls /go/bin
       - install-upx: apt-get update ; apt-get -y install upx
       - install-makisu: go get github.com/uber/makisu/bin/makisu
+      - find-cacerts: find / -name cacerts.pem
       - cp-makisu-cacerts: mkdir -p /makisu-internal/certs; cp /go/src/github.com/uber/makisu/site/assets/cacerts.pem /makisu-internal/certs/cacerts.pem
       - ls-cacerts: ls -lah /makisu-internal/certs
       - set-go-bin-path: export PATH=$PATH:$GOPATH/bin
