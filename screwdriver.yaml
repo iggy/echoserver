@@ -15,7 +15,7 @@ shared:
     # accessible by another environment variable that we can reference instead
     # of hard-coding it here
     GOPATH: /sd/workspace
-    HARBOR_USER: robot\\\\$concourse-ci
+    HARBOR_USER: robot\\\\\$concourse-ci
   secrets:
     - HARBOR_PASSWORD
 
