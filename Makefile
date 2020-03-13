@@ -45,6 +45,8 @@ compress:
 	sha256sum -b ./bin/$(BIN_PATH) \
 		| cut -f 1 -d ' ' > ./bin/$(BIN_PATH).sha256
 	ls -lah ./bin/$(BIN_PATH)
+	cp -a ./bin/$(BIN_PATH) $SD_ARTIFACTS_DIR
+
 
 image:
 	export SSL_CERT_DIR=/go/src/github.com/uber/makisu/site/assets/cacerts.pem
