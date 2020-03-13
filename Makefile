@@ -45,7 +45,7 @@ compress:
 	sha256sum -b ./bin/$(BIN_PATH) \
 		| cut -f 1 -d ' ' > ./bin/$(BIN_PATH).sha256
 	ls -lah ./bin/$(BIN_PATH)
-	cp -a ./bin/$(BIN_PATH) $SD_ARTIFACTS_DIR
+	cp -a ./bin/$(BIN_PATH) $(SD_ARTIFACTS_DIR)
 
 
 image:
