@@ -54,7 +54,7 @@ image:
 		--build-arg BUILD_TIMESTAMP=$(TIMESTAMP) \
 		--file ./deploy/Dockerfile \
 		--push $(DOCKER_REGISTRY) \
-		--registry-config='{"$(DOCKER_REGISTRY)": {".*": {"push_chunk": -1, "security": {"tls": {"ca": {"cert": {"path": "/makisu-internal/certs/cacerts.pem"}}},"basic": {"username": "robot$$$(HARBOR_USER)", "password": "$(HARBOR_PASSWORD)"}}}}}' \
+		--registry-config=./registry-config.yaml \
 		--compression size \
 		--tag $(DOCKER_NAMESPACE)/$(DOCKER_IMAGE_NAME):latest \
 		.

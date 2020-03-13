@@ -64,12 +64,13 @@ jobs:
     steps:
       - env: env
       - go-env: go env ; ls /go/bin
-      - install-upx: apt-get update ; apt-get -y install upx
+      - install-apt-deps: apt-get update ; apt-get -y --no-install-recommends --no-install-suggests install upx awscli
       - install-makisu: go get github.com/uber/makisu/bin/makisu
       - find-cacerts: find / -name cacerts.pem
       - cp-makisu-cacerts: mkdir -p /makisu-internal/certs; cp /sd/workspace/pkg/mod/github.com/uber/makisu@v0.1.14/assets/cacerts.pem /makisu-internal/certs/cacerts.pem
       - ls-cacerts: ls -lah /makisu-internal/certs
       - set-go-bin-path: export PATH=$PATH:$GOPATH/bin
+      - s3-cp-registry-config: aws s3 cp s3://pluto-screwdriver-poc/registry-config.yaml .
       - build_prod: make build_production
       - compress: make compress
       - image: make image
