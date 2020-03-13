@@ -56,6 +56,7 @@ image:
 		--push $(DOCKER_REGISTRY) \
 		--registry-config=./registry-config.yaml \
 		--compression size \
+		--replica $(DOCKER_NAMESPACE)/$(DOCKER_IMAGE_NAME):$(SD_BUILD_SHA) \
 		--tag $(DOCKER_NAMESPACE)/$(DOCKER_IMAGE_NAME):latest \
 		.
 test_image:
