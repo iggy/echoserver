@@ -1,5 +1,6 @@
 CMD_ROOT=echoserver
-DOCKER_NAMESPACE=harbor.ops.pluto.tv/pluto-tv
+DOCKER_REGISTRY=harbor.ops.pluto.tv
+DOCKER_NAMESPACE=$(DOCKER_REGISTRY)/pluto-tv
 DOCKER_IMAGE_NAME=sd-echoserver
 PROJECT_NAME=echoserver
 GIT_COMMIT=$$(git rev-parse --verify HEAD)
@@ -46,11 +47,14 @@ compress:
 	ls -lah ./bin/$(BIN_PATH)
 
 image:
-	docker build \
+	makisu build \
 		--build-arg GIT_COMMIT_ID=$(GIT_COMMIT) \
 		--build-arg GIT_TAG=$(GIT_TAG) \
 		--build-arg BUILD_TIMESTAMP=$(TIMESTAMP) \
 		--file ./deploy/Dockerfile \
+		--push $(DOCKER_REGISTRY) \
+		--registry-config='{"$(DOCKER_REGISTRY)": {".*": {"push_chunk": -1, "security": {"basic": {"username": "$(HARBOR_USER)", "password": "$(HARBOR_PASSWORD)"}}}}}' \
+		--compression size \
 		--tag $(DOCKER_NAMESPACE)/$(DOCKER_IMAGE_NAME):latest \
 		.
 test_image:

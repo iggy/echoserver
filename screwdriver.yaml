@@ -56,13 +56,14 @@ jobs:
     requires:
       - ~pr
       - main
-    image: alpine/git  # docker:dind
-    annotations:
-      screwdriver.cd/dockerEnabled: true
+    # image: gcr.io/uber-container-tools/makisu  # docker:dind
+    # annotations:
+      # screwdriver.cd/dockerEnabled: true
     steps:
       - env: env
+      - install-upx: apt-get update ; apt-get -y install upx
+      - install-makisu: go get github.com/uber/makisu/bin/makisu
       - which-docker: which docker
       - build_prod: make build_production
       - compress: make compress
       - image: make image
-      - push: make dockerhub
