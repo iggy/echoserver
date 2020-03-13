@@ -63,7 +63,6 @@ jobs:
       - env: env
       - install-upx: apt-get update ; apt-get -y install upx
       - install-makisu: go get github.com/uber/makisu/bin/makisu
-      - which-docker: which docker
       - build_prod: make build_production
       - compress: make compress
       - image: make image
