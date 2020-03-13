@@ -18,7 +18,7 @@ ENV PATH=/bin
 COPY ./bin/echoserver_linux_amd64 /bin/echoserver
 ENTRYPOINT ["/bin/echoserver"]
 LABEL maintainer "iggy"
-LABEL repository_github "https://github.com/iggy/echoserver"
+LABEL repository-github "https://github.com/iggy/echoserver"
 # LABEL repository_gitlab "https://gitlab.com/usvc/services/echoserver"
 # LABEL git_commit_id ${GIT_COMMIT_ID}
 # LABEL git_tag ${GIT_TAG}
